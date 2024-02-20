@@ -20,6 +20,24 @@ const DisplayState = (props) => {
   )
 }
 
+const TotalFeedback = (props) => {
+  return(
+    <p>all {props.all}</p>
+  )
+}
+
+const Average = (props) => {
+  return(
+    <p>average {props.avg}</p>
+  )
+}
+
+const Positive = (props) => {
+  return(
+    <p>positive {props.pos}%</p>
+  )
+}
+
 const App = () => {
   // save clicks of each button to its own state
   const [good, setGood] = useState(0)
@@ -42,6 +60,11 @@ const App = () => {
     console.log("bad", newBad)
   }
 
+  const all = good + neutral + bad
+  const score = good - bad
+  const avg = score/all
+  const pos = good/all
+
   return (
     <div>
       <Header text="give feedback"/>
@@ -52,6 +75,9 @@ const App = () => {
       <DisplayState text="good" n_clicks={good}/>
       <DisplayState text="neutral" n_clicks={neutral}/>
       <DisplayState text="bad" n_clicks={bad}/>
+      <TotalFeedback all={all}/>
+      <Average avg={avg}/>
+      <Positive pos={pos}/>
     </div>
   )
 }
