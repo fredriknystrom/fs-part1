@@ -14,9 +14,9 @@ const Button = (props) => {
   )
 }
 
-const DisplayState = (props) => {
+const StatisticsLine = (props) => {
   return(
-    <p>{props.text} {props.n_clicks}</p>
+    <p>{props.text} {props.value}</p>
   )
 }
 
@@ -37,9 +37,9 @@ const Statistics = (props) => {
     return(
       <div>
         <Header text="statistics"/>
-        <DisplayState text="good" n_clicks={props.good}/>
-        <DisplayState text="neutral" n_clicks={props.neutral}/>
-        <DisplayState text="bad" n_clicks={props.bad}/>
+        <StatisticsLine text="good" value={props.good}/>
+        <StatisticsLine text="neutral" value={props.neutral}/>
+        <StatisticsLine text="bad" value={props.bad}/>
         <p>all {all}</p>
         <p>average {avg}</p>
         <p>positive {pos}%</p>
