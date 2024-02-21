@@ -1,5 +1,11 @@
 import { useState } from 'react'
 
+const Header = (props) => {
+  return (
+    <h1>{props.text}</h1>
+  )
+}
+
 const Button = (props) => {
   return (
     <button onClick={props.onClick}>
@@ -36,12 +42,29 @@ const App = () => {
     console.log(copyVotes)
   }
 
+  // First find the max value of array
+  let maxValue = Math.max(...votes);
+
+  // Then get the index of that value
+  let maxIndex = votes.indexOf(maxValue);
+
 
   return (
     <div>
-      <p>{anecdotes[selected]}</p>
-      <Button onClick={randomState} text="next anecdote"/>
+      <Header text="Anecdote of the day"/>
+      <p>
+        {anecdotes[selected]}
+        <br/> 
+        has {votes[selected]} votes
+      </p>
       <Button onClick={addVote} text="vote"/>
+      <Button onClick={randomState} text="next anecdote"/>
+      <Header text="Anecdote with most votes"/>
+      <p>
+        {anecdotes[maxIndex]}
+        <br/> 
+        has {votes[maxIndex]} votes
+      </p>
     </div>
   )
 }
