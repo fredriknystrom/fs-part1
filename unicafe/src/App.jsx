@@ -24,18 +24,28 @@ const Statistics = (props) => {
   const all = props.good + props.neutral + props.bad
   const score = props.good - props.bad
   const avg = score/all
-  const pos = props.good/all
-  return(
-    <div>
-      <Header text="statistics"/>
-      <DisplayState text="good" n_clicks={props.good}/>
-      <DisplayState text="neutral" n_clicks={props.neutral}/>
-      <DisplayState text="bad" n_clicks={props.bad}/>
-      <p>all {all}</p>
-      <p>average {avg}</p>
-      <p>positive {pos}%</p>
-    </div>
-  )
+  const pos = props.good/all*100
+  if (all === 0) {
+    return(
+      <div>
+        <Header text="statistics"/>
+        <p>No feedback given</p>
+      </div>
+    )
+  }
+  else {
+    return(
+      <div>
+        <Header text="statistics"/>
+        <DisplayState text="good" n_clicks={props.good}/>
+        <DisplayState text="neutral" n_clicks={props.neutral}/>
+        <DisplayState text="bad" n_clicks={props.bad}/>
+        <p>all {all}</p>
+        <p>average {avg}</p>
+        <p>positive {pos}%</p>
+      </div>
+    )
+  }
 }
 
 const App = () => {
