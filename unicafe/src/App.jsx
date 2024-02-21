@@ -20,21 +20,21 @@ const DisplayState = (props) => {
   )
 }
 
-const TotalFeedback = (props) => {
+const Statistics = (props) => {
+  const all = props.good + props.neutral + props.bad
+  const score = props.good - props.bad
+  const avg = score/all
+  const pos = props.good/all
   return(
-    <p>all {props.all}</p>
-  )
-}
-
-const Average = (props) => {
-  return(
-    <p>average {props.avg}</p>
-  )
-}
-
-const Positive = (props) => {
-  return(
-    <p>positive {props.pos}%</p>
+    <div>
+      <Header text="statistics"/>
+      <DisplayState text="good" n_clicks={props.good}/>
+      <DisplayState text="neutral" n_clicks={props.neutral}/>
+      <DisplayState text="bad" n_clicks={props.bad}/>
+      <p>all {all}</p>
+      <p>average {avg}</p>
+      <p>positive {pos}%</p>
+    </div>
   )
 }
 
@@ -60,24 +60,13 @@ const App = () => {
     console.log("bad", newBad)
   }
 
-  const all = good + neutral + bad
-  const score = good - bad
-  const avg = score/all
-  const pos = good/all
-
   return (
     <div>
       <Header text="give feedback"/>
       <Button onClick={goodClick} text="good"/>
       <Button onClick={neutralClick} text="neutral"/> 
       <Button onClick={badClick} text="bad"/> 
-      <Header text="statistics"/>
-      <DisplayState text="good" n_clicks={good}/>
-      <DisplayState text="neutral" n_clicks={neutral}/>
-      <DisplayState text="bad" n_clicks={bad}/>
-      <TotalFeedback all={all}/>
-      <Average avg={avg}/>
-      <Positive pos={pos}/>
+      <Statistics good={good} neutral={neutral} bad={bad}/>
     </div>
   )
 }
