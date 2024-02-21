@@ -53,7 +53,7 @@ const Statistics = (props) => {
             </tr>
             <tr>
               <td>positive</td>
-              <td>{pos}</td>
+              <td>{pos}%</td>
             </tr>
           </tbody>
         </table>
